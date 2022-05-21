@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - 16
+
+services:
+- postgresql
+
+before_script:
+- psql -c "create database elite_bn_db;" -U postgres
+
+install:
+  - npm install
+  
+script:
+  - npm test
+ 
+notification:
+  - email: false
+
+after_success:
+  - npm run coverage
